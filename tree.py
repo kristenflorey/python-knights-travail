@@ -36,7 +36,25 @@ class Node:
         if node is not None:
             node.add_child(self)
 
-    # def depth_search(self, value):
+    def depth_search(self, value):
+        if self._value == value:
+            return self
+        for node in self._children:
+            child = node.depth_search(value)
+            if child:
+                return child
+        return None
+
+    def breadth_search(self, value):
+        search = [self]
+
+        while search:
+            node = search.pop(0)
+            if node._value == value:
+                return node
+            search.extend(node._children)
+
+        return None
 
 
 # node1 = Node("root1")
